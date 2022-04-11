@@ -13,7 +13,8 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   var friuts = ['apple', 'peach', 'oranges', 'grape', 'bannana', 'mango'];
-  int i = 0;
+  var i = 0;
+  var x;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -21,28 +22,29 @@ class _MyAppState extends State<MyApp> {
         body: SafeArea(
           child: Column(
             children: [
-              Text('to traverse through the list please use below bottons :-)'),
-              Text(friuts[i]),
-              Row(
-                children: [
-                  FlatButton(
-                      onPressed: () {
-                        setState(() {
-                          i -= 1;
-                          if (i < 0) i = 0;
-                        });
-                      },
-                      child: Icon(Icons.minimize)),
-                  FlatButton(
-                      onPressed: () {
-                        setState(() {
-                          i += 1;
-                          if (i > 5) i = 5;
-                          print('plus pressed');
-                        });
-                      },
-                      child: Icon(Icons.add)),
-                ],
+              Text(
+                'enter the number and then press jump to:-)',
+                style: TextStyle(fontSize: 20),
+              ),
+              TextField(
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: 'enter a number between 0 or 5 '),
+                onChanged: (value) => x = value,
+              ),
+              RaisedButton(
+                  onPressed: () {
+                    setState(() {
+                      if (x == null || x.isEmpty) x = '0';
+                      i = int.parse(x);
+                      if (i > 5) i = 5;
+                      if (i < 0) i = 0;
+                    });
+                  },
+                  child: Text('jump to ')),
+              Text(
+                friuts[i],
+                style: TextStyle(fontSize: 20),
               )
             ],
           ),
