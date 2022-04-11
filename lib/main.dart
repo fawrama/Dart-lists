@@ -16,28 +16,36 @@ class _MyAppState extends State<MyApp> {
   int i = 0;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.teal,
-      body: SafeArea(
-        child: Column(
-          children: [
-            Text('to traverse through the list please use below bottons :-)'),
-            Text('$friuts[i]'),
-            Row(
-              children: [
-                FlatButton(
-                    onPressed: () {
-                      i -= 1;
-                    },
-                    child: Icon(Icons.minimize_rounded)),
-                FlatButton(
-                    onPressed: () {
-                      i += 1;
-                    },
-                    child: Icon(Icons.add)),
-              ],
-            )
-          ],
+    return MaterialApp(
+      home: Scaffold(
+        body: SafeArea(
+          child: Column(
+            children: [
+              Text('to traverse through the list please use below bottons :-)'),
+              Text(friuts[i]),
+              Row(
+                children: [
+                  FlatButton(
+                      onPressed: () {
+                        setState(() {
+                          i -= 1;
+                          if (i < 0) i = 0;
+                        });
+                      },
+                      child: Icon(Icons.minimize)),
+                  FlatButton(
+                      onPressed: () {
+                        setState(() {
+                          i += 1;
+                          if (i > 5) i = 5;
+                          print('plus pressed');
+                        });
+                      },
+                      child: Icon(Icons.add)),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
