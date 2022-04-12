@@ -1,12 +1,15 @@
+// ignore_for_file: deprecated_member_use
+
+// ignore: unnecessary_import
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
-  MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
   @override
   State<MyApp> createState() => _MyAppState();
 }
@@ -19,26 +22,36 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.teal,
+        appBar: AppBar(
+          backgroundColor: Colors.teal,
+          title: const Center(
+            child: Text('ASG_1'),
+          ),
+        ),
+        backgroundColor: Colors.teal[900],
         body: SafeArea(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
+              const Text(
                 'enter the number and then press jump to:-)',
                 style: TextStyle(fontSize: 20, color: Colors.white),
               ),
               Container(
                 height: 20,
               ),
-              TextField(
-                style: TextStyle(color: Colors.white),
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'enter a number between 0 or 5 ',
-                    hintStyle: TextStyle(color: Colors.white)),
-                onChanged: (value) => x = value,
-                cursorColor: Colors.white,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: TextField(
+                  keyboardType: TextInputType.number,
+                  style: const TextStyle(color: Colors.white),
+                  decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'enter a number between 0 or 5 ',
+                      hintStyle: TextStyle(color: Colors.white)),
+                  onChanged: (value) => x = value,
+                  cursorColor: Colors.white,
+                ),
               ),
               Container(
                 height: 20,
@@ -52,14 +65,14 @@ class _MyAppState extends State<MyApp> {
                     if (i < 0) i = 0;
                   });
                 },
-                child: Text('jump to '),
+                child: const Text('jump to '),
               ),
               Container(
                 height: 20,
               ),
               Text(
                 friuts[i],
-                style: TextStyle(fontSize: 20, color: Colors.white),
+                style: const TextStyle(fontSize: 20, color: Colors.white),
               )
             ],
           ),
